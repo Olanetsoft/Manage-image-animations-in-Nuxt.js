@@ -23,13 +23,14 @@
       >
         Manage image animations in Nuxt.js
       </h1>
+
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-lg leading-6 font-medium text-gray-900">
           Class-based Animations
         </h2>
         <div :class="{ shake }">
           <button
-            @click="activateShakeAnimation"
+            @click="shake = !shake"
             class="
               bg-transparent
               hover:bg-blue-500 hover:text-white
@@ -41,36 +42,14 @@
               mt-3
             "
           >
-            Click me, I will shake!
+            Click me (Shake)!
           </button>
-          <span v-if="shake">This is a shake animation feature!</span>
+
+          <cld-image public-id="/samples/people/boy-snow-hoodie.jpg" class="mt-3">
+          </cld-image>
         </div>
       </div>
-      <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
-        <h2 class="text-lg leading-6 font-medium text-gray-900">
-          State-driven Animations
-        </h2>
-        <div
-          @mousemove="onMousemove"
-          :style="{ backgroundColor: `hsl(${state}, 40%, 50%)` }"
-          class="
-            movearea
-            w-full
-            h-full
-            flex
-            justify-center
-            items-center
-            mt-3
-            py-6
-            px-4
-            border border-gray-500
-          "
-        >
-          <p class="text-center text-white text-l">
-            Move the mouse to change the color!
-          </p>
-        </div>
-      </div>
+
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-lg leading-6 font-medium text-gray-900">
           Built-in Transition (Toggle & Fade)
@@ -91,11 +70,14 @@
           Click me, I will toggle + Fade!
         </button>
         <Transition>
-          <p v-if="tFade" class="text-dark text-l mt-3">
-            This is a built-in transition feature!
-          </p>
+          <cld-image
+            v-if="tFade"
+            public-id="/samples/people/group-picture.jpg"
+            class="mt-3"
+          ></cld-image>
         </Transition>
       </div>
+
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-lg leading-6 font-medium text-gray-900">
           CSS Transitions (Slide & Fade)
@@ -116,11 +98,14 @@
           Click me to toggle Slide + Fade!
         </button>
         <Transition name="slide-fade">
-          <p v-if="sFade" class="text-dark text-l mt-3">
-            This is a CSS transition feature!
-          </p>
+          <cld-image
+            v-if="sFade"
+            public-id="/samples/people/group-picture-3.jpg"
+            class="mt-3"
+          ></cld-image>
         </Transition>
       </div>
+
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-lg leading-6 font-medium text-gray-900">
           CSS Animations (Bounce)
@@ -141,11 +126,14 @@
           Click me to toggle Bounce!
         </button>
         <Transition name="bounce">
-          <p v-if="bounce" class="text-dark text-l mt-3">
-            This is a CSS animation feature!
-          </p>
+          <cld-image
+            v-if="bounce"
+            public-id="/samples/people/jazz.jpg"
+            class="mt-3"
+          ></cld-image>
         </Transition>
       </div>
+
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-lg leading-6 font-medium text-gray-900">
           Custom Transition Classes
@@ -170,9 +158,11 @@
           enter-active-class="animate__animated animate__tada"
           leave-active-class="animate__animated animate__bounceOutRight"
         >
-          <p v-if="show" class="text-dark text-l mt-3">
-            This is a custom transition feature!
-          </p>
+          <cld-image
+            v-if="show"
+            public-id="/samples/people/smiling-man.jpg"
+            class="mt-3"
+          ></cld-image>
         </Transition>
       </div>
     </div>
@@ -186,25 +176,11 @@ export default {
   data() {
     return {
       shake: false,
-      state: 0,
-      tFade: false,
-      sFade: false,
-      bounce: false,
-      show: false,
+      tFade: true,
+      sFade: true,
+      bounce: true,
+      show: true,
     };
-  },
-
-  methods: {
-    activateShakeAnimation() {
-      this.shake = true;
-      setTimeout(() => {
-        this.shake = false;
-      }, 1500);
-    },
-
-    onMousemove(e) {
-      this.state = e.clientX;
-    },
   },
 };
 </script>
@@ -245,12 +221,6 @@ export default {
 /* Shake animation end here */
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////// */
-
-/* State-driven Animations starts here */
-.movearea {
-  transition: 0.3s background-color ease;
-}
-/* State-driven Animations end here */
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////// */
 
